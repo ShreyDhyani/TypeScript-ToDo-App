@@ -20,7 +20,7 @@ const TodoListElement: React.FC<Props> = ({ ...props }) => {
     >
       <div
         className={
-          "flex-1 flex-wrap overflow-hidden overflow-ellipsis" +
+          "flex-1 flex-wrap overflow-hidden overflow-ellipsis text-yellow-900" +
           (props.todo.status ? " line-through" : "")
         }
       >
