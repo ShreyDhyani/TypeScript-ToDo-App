@@ -2,67 +2,93 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../../redux/store";
 import { setColor } from "../../redux/slice/colorSlice";
-
+import { theme } from "../theme/theme";
 interface Props {
   isHidden: boolean;
 }
 
 const Popup: React.FC<Props> = ({ ...props }) => {
   const currentColor = useSelector((state: RootState) => state.color.color);
+  const currentTheme = theme[currentColor as "yellow"];
   const dispatch = useDispatch();
+  const selectorStyle = "h-8 w-8 mr-2 rounded-full hover:border-4";
 
   return (
     <div
       className={
-        "Popup absolute -top-16 right-2 h-20 w-32 z-20 p-1 bg-white border-2 bg-opacity-70 rounded-lg flex flex-wrap child" +
-        `border-${currentColor}-700` +
+        "Popup absolute right-2 -top-32 h-36 w-24 z-20 pl-2 pt-2 border-4 bg-white bg-opacity-80 rounded-lg flex flex-wrap justify-center" +
         (props.isHidden ? " hidden" : "")
       }
+      style={{ borderColor: currentTheme.border }}
     >
       <div
-        className={`h-8 w-8 mr-2 rounded-full bg-color_red-fill hover:border-4 hover:border-color_red-boundary`}
+        className={selectorStyle}
+        style={{
+          backgroundColor: theme.red.fill,
+          borderColor: theme.red.border,
+        }}
         onClick={(e) => {
-          dispatch(setColor({ color: "color_red" }));
+          dispatch(setColor({ color: "red" }));
         }}
       >
         {" "}
       </div>
       <div
-        className={`h-8 w-8 mr-2 rounded-full bg-color_blue-fill hover:border-4 hover:border-color_blue-boundary`}
+        className={selectorStyle}
+        style={{
+          backgroundColor: theme.blue.fill,
+          borderColor: theme.blue.border,
+        }}
         onClick={(e) => {
-          dispatch(setColor({ color: "color_blue" }));
+          dispatch(setColor({ color: "blue" }));
         }}
       >
         {" "}
       </div>
       <div
-        className={`h-8 w-8  rounded-full bg-color_green-fill hover:border-4 hover:border-color_green-boundary`}
+        className={selectorStyle}
+        style={{
+          backgroundColor: theme.green.fill,
+          borderColor: theme.green.border,
+        }}
         onClick={(e) => {
-          dispatch(setColor({ color: "color_green" }));
+          dispatch(setColor({ color: "green" }));
         }}
       >
         {" "}
       </div>
       <div
-        className={`h-8 w-8 mr-2 rounded-full bg-color_yellow-fill hover:border-4 hover:border-color_yellow-boundary`}
+        className={selectorStyle}
+        style={{
+          backgroundColor: theme.yellow.fill,
+          borderColor: theme.yellow.border,
+        }}
         onClick={(e) => {
-          dispatch(setColor({ color: "color_yellow" }));
+          dispatch(setColor({ color: "yellow" }));
         }}
       >
         {" "}
       </div>
       <div
-        className={`h-8 w-8 mr-2 rounded-full bg-color_indigo-fill hover:border-4 hover:border-color_indigo-boundary`}
+        className={selectorStyle}
+        style={{
+          backgroundColor: theme.indigo.fill,
+          borderColor: theme.indigo.border,
+        }}
         onClick={(e) => {
-          dispatch(setColor({ color: "color_indigo" }));
+          dispatch(setColor({ color: "indigo" }));
         }}
       >
         {" "}
       </div>
       <div
-        className={`h-8 w-8 rounded-full bg-color_purple-fill hover:border-4 hover:border-color_purple-boundary`}
+        className={selectorStyle}
+        style={{
+          backgroundColor: theme.orange.fill,
+          borderColor: theme.orange.border,
+        }}
         onClick={(e) => {
-          dispatch(setColor({ color: "color_purple" }));
+          dispatch(setColor({ color: "orange" }));
         }}
       >
         {" "}

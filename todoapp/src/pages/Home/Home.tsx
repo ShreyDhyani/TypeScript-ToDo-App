@@ -12,11 +12,15 @@ import { deleteTodos } from "../../controllers/deleteTodosController/deleteTodos
 import Popup from "../../components/popup/Popup";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../redux/store";
+import { theme } from "../../components/theme/theme";
 
 const Home: React.FC = () => {
   const [todoList, setTodoList] = useState<Todo[]>([]);
   const [showPicker, setShowPicker] = useState<boolean>(true);
-  const currentColor: string = useSelector((state: RootState) => state.color.color);
+  const currentColor: string = useSelector(
+    (state: RootState) => state.color.color
+  );
+  const currentTheme = theme[currentColor as "yellow"];
 
   const handleTodoNewTodoAdd = (todoInput: string): void => {
     setTodoList([...addTodo(todoInput, todoList)]);
@@ -37,12 +41,6 @@ const Home: React.FC = () => {
     setTodoList(getItemInStorage());
   }, []);
 
-//   const reconfigString = (color:string):string =>{
-//     let temp = color.split('_')[1];
-//     console.log(` bg-${temp}-500 hover:border-4 hover:border-${temp}-700`)
-//     return temp;
-//   }
-
   return (
     <div className="Home flex flex-col h-screen relative">
       <Inputter callback={handleTodoNewTodoAdd} />
@@ -56,20 +54,23 @@ const Home: React.FC = () => {
         >
           {"Delete Completed To-Dos"}
         </button>
-        {/* <Popup isHidden={showPicker} />
+        <Popup isHidden={showPicker} />
         <button
           className={
-            "p-2 item-center justify-center mr-2 rounded-full h-8 w-8 m-2 float-right relative " +
-            // reconfigString(currentColor)
-            // ` bg-${reconfigString(currentColor)}-700`
+            "p-2 item-center border-4 justify-center mr-2 rounded-full h-8 w-8 m-2 float-right relative"
           }
+          style={{
+            backgroundColor: currentTheme.fill,
+            borderColor: currentTheme.border,
+          }}
           onClick={(e) => {
+            e.preventDefault();
             console.log("Current Color is: ", currentColor);
             setShowPicker(!showPicker);
           }}
         >
           {""}
-        </button>   */}
+        </button>
         {/* <TestComponent /> */}
       </div>
     </div>
