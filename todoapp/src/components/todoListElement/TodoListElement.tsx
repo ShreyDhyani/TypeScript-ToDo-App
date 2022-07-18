@@ -21,7 +21,7 @@ const TodoListElement: React.FC<Props> = ({ ...props }) => {
     <div
       id={props.todo.id.toString()}
       key={props.todo.id.toString() + props.todo.todo}
-      className="Todo w-8/12 p-1 pl-3 border-2 rounded-lg text-left my-1 flex hover:h-fit"
+      className="Todo w-8/12 p-1 pl-3 border-2 rounded-lg text-left my-1 flex"
       style={{
         borderColor: currentTheme.border,
         backgroundColor: currentTheme.note,

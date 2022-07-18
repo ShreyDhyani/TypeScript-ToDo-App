@@ -10,9 +10,23 @@ interface Props {
   callback: (todoIndex: number) => void;
 }
 
+
+
 const TodoList: React.FC<Props> = ({ ...props }) => {
   const currentColor = useSelector((state: RootState) => state.color.color);
   const currentTheme = theme[currentColor as "yellow"];
+
+  const generateList= () =>{
+    return props.todoList.map((todo) => {
+      return (
+        <TodoListElement
+          key={todo.id}
+          todo={todo}
+          callback={props.callback}
+        />
+      );
+    })
+  }
 
   return (
     <div
@@ -29,15 +43,7 @@ const TodoList: React.FC<Props> = ({ ...props }) => {
         {"To-Do List"}
       </label>
       <div className="TodoElements mt-3 flex flex-col justify-center items-center">
-        {props.todoList.map((todo) => {
-          return (
-            <TodoListElement
-              key={todo.id}
-              todo={todo}
-              callback={props.callback}
-            />
-          );
-        })}
+        {(props.todoList.length !== 0) ? generateList() : <p className="text-3xl font-bold py-2" style={{color:currentTheme.border}}>{'No ToDo Added Yet!!!!'}</p>}
       </div>
     </div>
   );
